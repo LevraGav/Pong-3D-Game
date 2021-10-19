@@ -21,6 +21,9 @@ var maxScore = 3;
 // Untuk set difficulity (0 itu termudah, 1 itu tersulit)
 var difficulty = 0.5;
 
+// pause/resume
+var pause=false
+
 // Game Function
 function setup()
 {
@@ -318,11 +321,17 @@ function draw()
 	renderer.render(scene, camera);
 	requestAnimationFrame(draw);
 	
-	ballPhysics();
-	paddlePhysics();
-	cameraPhysics();
-	playerPaddleMovement();
-	opponentPaddleMovement();
+	if (Key.isDown(Key.ESCAPE)) {
+		pause = !pause;
+	}
+
+	if (!pause) {
+		ballPhysics();
+		paddlePhysics();
+		cameraPhysics();
+		playerPaddleMovement();
+		opponentPaddleMovement();
+	}
 }
 
 function ballPhysics()

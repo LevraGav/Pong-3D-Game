@@ -31,6 +31,9 @@ var maxScore = 7;
 // set opponent reflexes (0 - easiest, 1 - hardest)
 var difficulty = 0.2;
 
+// pause state
+var pause = false;
+
 // ------------------------------------- //
 // ------- GAME FUNCTIONS -------------- //
 // ------------------------------------- //
@@ -341,11 +344,17 @@ function draw()
 	// loop draw function call
 	requestAnimationFrame(draw);
 	
-	ballPhysics();
-	paddlePhysics();
-	cameraPhysics();
-	playerPaddleMovement();
-	opponentPaddleMovement();
+	if (Key.isDown(Key.ESCAPE)) {
+		pause = !pause;
+	}
+
+	if (!pause) {
+		ballPhysics();
+		paddlePhysics();
+		cameraPhysics();
+		playerPaddleMovement();
+		opponentPaddleMovement();
+	}
 }
 
 function ballPhysics()
